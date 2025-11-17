@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 from time import sleep
 from random import randint
 
@@ -79,9 +80,9 @@ class Card:
     def takedmg(self, enemycard):
         if 'bees_within' in self.sigillist:
             if p1turn:
-                p2hand.append(Card([1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\bee.png'), ['airborne'], True]))
+                p2hand.append(Card([1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/bee.png')), ['airborne'], True]))
             else:
-                p1hand.append(Card([1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\bee.png'), ['airborne'], True]))
+                p1hand.append(Card([1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/bee.png')), ['airborne'], True]))
         if 'touch_of_death' in self.sigillist:
             self.hp = 0
         if 'repulsive' in self.sigillist:
@@ -90,7 +91,7 @@ class Card:
 
 def draw(deck):
     if len(deck) <= 0: # If deck is empty draw a starvation card (hopefully prevents softlocking)
-        return Card([1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\starvation.png'), ['repulsive'], False])
+        return Card([1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/starvation.png')), ['repulsive'], False])
     temp = randint(0, len(deck)-1)
     return deck[temp], temp
 
@@ -215,113 +216,113 @@ class Button:
 # Card([dmg, hp, blood, bones, image file, sigil list, sacrificable])
 # Template for new instances:
 # = [, , , , pygame.image.load(r'CroppedInscryptionCards\.png'), [], True]
-adder = [1, 1, 2, 0, pygame.image.load(r'CroppedInscryptionCards\adder.png'), ['touch_of_death'], True]
-alpha = [1, 2, 0, 5, pygame.image.load(r'CroppedInscryptionCards\alpha.png'), ['leader'], True]
-amalgam = [3, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\amalgam.png'), [], True]
-amoeba = [1, 2, 0, 2, pygame.image.load(r'CroppedInscryptionCards\amoeba.png'), ['amorphous'], True]
-ant_queen = [0, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\ant_queen.png'), ['ant_damage', 'ant_spawner'], True] # Added 'sigil' for ant damage
-bait_bucket = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\bait_bucket.png'), [], False] # Shark spawning not currently coded as it is not a sigil
-bat = [2, 1, 0, 4, pygame.image.load(r'CroppedInscryptionCards\bat.png'), ['airborne'], True]
-beaver = [1, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\beaver.png'), ['dam_builder'], True]
-bee = [1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\bee.png'), ['airborne'], True]
-beehive = [0, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\beehive.png'), ['bees_within'], True]
-black_goat = [0, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\black_goat.png'), ['worthy_sacrifice'], True]
-bloodhound = [2, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\bloodhound.png'), ['guardian'], True]
-boulder = [0, 5, 0, 0, pygame.image.load(r'CroppedInscryptionCards\boulder.png'), [], False]
-bullfrog = [1, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\bullfrog.png'), ['mighty_leap'], True]
-caged_wolf = [0, 6, 2, 0, pygame.image.load(r'CroppedInscryptionCards\caged_wolf.png'), [], False] # Wolf spawning not currently coded as it is not a sigil
-cat = [0, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\cat.png'), ['many_lives'], True]
-child_13 = [0, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\child_13.png'), ['many_lives'], True]
-child_13_awake = [2, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\child_13_awake.png'), ['airborne', 'many_lives'], True]
-chime = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\chime.png'), [], False] # Daus interaction not currently coded as it is not a sigil
-cockroach = [1, 1, 0, 4, pygame.image.load(r'CroppedInscryptionCards\cockroach.png'), ['unkillable'], True]
-corpse_maggots = [1, 2, 0, 5, pygame.image.load(r'CroppedInscryptionCards\corpse_maggots.png'), ['corpse_eater'], True]
-coyote = [2, 1, 0, 4, pygame.image.load(r'CroppedInscryptionCards\coyote.png'), [], True]
-dam = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\dam.png'), [], False]
-elk = [2, 4, 2, 0, pygame.image.load(r'CroppedInscryptionCards\elk.png'), ['sprinter'], True]
-elk_fawn = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\elk_fawn.png'), ['sprinter', 'fledgling'], True]
-field_mice = [2, 2, 2, 0, pygame.image.load(r'CroppedInscryptionCards\field_mice.png'), ['fecundity'], True]
-frozen_opossum = [0, 5, 0, 0, pygame.image.load(r'CroppedInscryptionCards\frozen_opossum.png'), ['frozen_away'], False]
-furry_tail = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\furry_tail.png'), [], False]
-geck = [1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\geck.png'), [], True]
-gold_nugget = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\gold_nugget.png'), [], False]
-golden_pelt = [0, 3, 0, 0, pygame.image.load(r'CroppedInscryptionCards\golden_pelt.png'), [], False]
-grand_fir = [0, 3, 0, 0, pygame.image.load(r'CroppedInscryptionCards\grand_fir.png'), ['mighty_leap'], False]
-great_white = [4, 2, 3, 0, pygame.image.load(r'CroppedInscryptionCards\great_white.png'), ['waterborne'], True]
-greater_smoke = [1, 3, 0, 0, pygame.image.load(r'CroppedInscryptionCards\greater_smoke.png'), ['bone_king'], True]
-grizzly = [4, 6, 3, 0, pygame.image.load(r'CroppedInscryptionCards\grizzly.png'), [], True]
-kingfisher = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\kingfisher.png'), ['waterborne', 'airborne'], True]
-leaping_trap = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\leaping_trap.png'), ['mighty_leap', 'steel_trap'], True]
-long_elk = [1, 2, 0, 4, pygame.image.load(r'CroppedInscryptionCards\long_elk.png'), ['sprinter', 'touch_of_death'], True]
-magpie = [1, 1, 2, 0, pygame.image.load(r'CroppedInscryptionCards\magpie.png'), ['hoarder', 'airborne'], True]
-mantis = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\mantis.png'), ['bifurcated_strike'], True]
-mantis_god = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\mantis_god.png'), ['trifurcated_strike'], True]
-mole = [0, 4, 1, 0, pygame.image.load(r'CroppedInscryptionCards\mole.png'), ['burrower'], True]
-mole_man = [0, 6, 1, 0, pygame.image.load(r'CroppedInscryptionCards\mole_man.png'), ['burrower', 'mighty_leap'], True]
-moose_buck = [3, 7, 3, 0, pygame.image.load(r'CroppedInscryptionCards\moose_buck.png'), ['hefty'], True]
-mothman = [7, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\mothman.png'), ['airborne'], True]
-opossum = [1, 1, 0, 2, pygame.image.load(r'CroppedInscryptionCards\opossum.png'), [], True]
-ouroboros = [1, 1, 2, 0, pygame.image.load(r'CroppedInscryptionCards\ouroboros.png'), ['unkillable'], True]
-pack_mule = [0, 5, 0, 0, pygame.image.load(r'CroppedInscryptionCards\pack_mule.png'), ['sprinter'], True]
-pack_rat = [2, 2, 2, 0, pygame.image.load(r'CroppedInscryptionCards\pack_rat.png'), ['trinket_bearer'], True]
-porcupine = [1, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\porcupine.png'), ['sharp_quills'], True]
-pronghorn = [1, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\pronghorn.png'), ['sprinter', 'bifurcated_strike'], True]
-rabbit = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\rabbit.png'), [], True]
-rabbit_pelt = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\rabbit_pelt.png'), [], False]
-rat_king = [2, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\rat_king.png'), ['bone_king'], True]
-rattler = [3, 1, 0, 6, pygame.image.load(r'CroppedInscryptionCards\rattler.png'), [], True]
-raven = [2, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\raven.png'), ['airborne'], True]
-raven_egg = [0, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\raven_egg.png'), ['fledgling'], True]
-ring_worm = [0, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\ring_worm.png'), [], True]
-river_otter = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\river_otter.png'), ['waterborne'], True]
-river_snapper = [1, 6, 2, 0, pygame.image.load(r'CroppedInscryptionCards\river_snapper.png'), [], True]
-skink = [1, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\skink.png'), ['loose_tail'], True]
-skunk = [0, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\skunk.png'), ['stinky'], True]
-snowy_fir = [0, 4, 0, 0, pygame.image.load(r'CroppedInscryptionCards\snowy_fir.png'), ['mighty_leap'], False]
-sparrow = [1, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\sparrow.png'), ['airborne'], True]
-squid_bell = [0, 3, 2, 0, pygame.image.load(r'CroppedInscryptionCards\squid_bell.png'), [], True] # Damage based on position from left, leftmost = 4, rightmost = 1
-squid_cards = [0, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\squid_cards.png'), [], True] # Damage = number of cards in player's hand
-squid_mirror = [0, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\squid_mirror.png'), [], True] # Damage = Opposite card's damage
-squirrel = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\squirrel.png'), [], True]
-starvation = [1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\starvation.png'), ['repulsive'], False]
-starvation_flying = [1, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\starvation_flying.png'), ['airborne'], False]
-stinkbug = [1, 2, 0, 2, pygame.image.load(r'CroppedInscryptionCards\stinkbug_talking.png'), ['stinky'], True]
-stoat = [1, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\stoat_talking.png'), [], True]
-strange_frog = [1, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\strange_frog.png'), ['mighty_leap'], False]
-strange_larva = [0, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\strange_larva.png'), ['fledgling'], True]
-strange_pupa = [0, 3, 1, 0, pygame.image.load(r'CroppedInscryptionCards\strange_pupa.png'), ['fledgling'], True]
-stump = [0, 3, 0, 0, pygame.image.load(r'CroppedInscryptionCards\stump.png'), [], False]
-tail_feathers = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\tail_feathers.png'), [], False]
-the_daus = [2, 2, 2, 0, pygame.image.load(r'CroppedInscryptionCards\the_daus.png'), ['bellist'], True]
-the_smoke = [0, 1, 0, 0, pygame.image.load(r'CroppedInscryptionCards\the_smoke.png'), ['bone_king'], True]
-turkey_vulture = [3, 3, 0, 8, pygame.image.load(r'CroppedInscryptionCards\turkey_vulture.png'), ['airborne'], True]
-undead_cat = [3, 6, 1, 0, pygame.image.load(r'CroppedInscryptionCards\undead_cat.png'), [], True]
-urayuli = [7, 7, 4, 0, pygame.image.load(r'CroppedInscryptionCards\urayuli.png'), [], True]
-warren = [0, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\warren.png'), ['rabbit_hole'], True]
-wolf = [3, 2, 2, 0, pygame.image.load(r'CroppedInscryptionCards\wolf.png'), [], True]
-wolf_cub = [1, 1, 1, 0, pygame.image.load(r'CroppedInscryptionCards\wolf_cub.png'), ['fledgling'], True]
-wolf_pelt = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\wolf_pelt.png'), [], False]
-stunted_wolf = [2, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\wolf_talking.png'), [], True]
-worker_ant = [0, 2, 1, 0, pygame.image.load(r'CroppedInscryptionCards\worker_ant.png'), ['ant_damage'], True] # Added 'sigil' for ant damage
-wriggling_leg = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\wriggling_leg.png'), [], False]
-wriggling_tail = [0, 2, 0, 0, pygame.image.load(r'CroppedInscryptionCards\wriggling_tail.png'), [], False]
+adder = [1, 1, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/adder.png')), ['touch_of_death'], True]
+alpha = [1, 2, 0, 5, pygame.image.load(Path('CroppedInscryptionCards/alpha.png')), ['leadePath('], True]
+amalgam = [3, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/amalgam.png')), [], True]
+amoeba = [1, 2, 0, 2, pygame.image.load(Path('CroppedInscryptionCards/amoeba.png')), ['amorphous'], True]
+ant_queen = [0, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/ant_queen.png')), ['ant_damage', 'ant_spawnePath('], True] # Added 'sigil' for ant damage
+bait_bucket = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/bait_bucket.png')), [], False] # Shark spawning not currently coded as it is not a sigil
+bat = [2, 1, 0, 4, pygame.image.load(Path('CroppedInscryptionCards/bat.png')), ['airborne'], True]
+beaver = [1, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/beaver.png')), ['dam_buildePath('], True]
+bee = [1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/bee.png')), ['airborne'], True]
+beehive = [0, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/beehive.png')), ['bees_within'], True]
+black_goat = [0, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/black_goat.png')), ['worthy_sacrifice'], True]
+bloodhound = [2, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/bloodhound.png')), ['guardian'], True]
+boulder = [0, 5, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/boulder.png')), [], False]
+bullfrog = [1, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/bullfrog.png')), ['mighty_leap'], True]
+caged_wolf = [0, 6, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/caged_wolf.png')), [], False] # Wolf spawning not currently coded as it is not a sigil
+cat = [0, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/cat.png')), ['many_lives'], True]
+child_13 = [0, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/child_13.png')), ['many_lives'], True]
+child_13_awake = [2, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/child_13_awake.png')), ['airborne', 'many_lives'], True]
+chime = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/chime.png')), [], False] # Daus interaction not currently coded as it is not a sigil
+cockroach = [1, 1, 0, 4, pygame.image.load(Path('CroppedInscryptionCards/cockroach.png')), ['unkillable'], True]
+corpse_maggots = [1, 2, 0, 5, pygame.image.load(Path('CroppedInscryptionCards/corpse_maggots.png')), ['corpse_eatePath('], True]
+coyote = [2, 1, 0, 4, pygame.image.load(Path('CroppedInscryptionCards/coyote.png')), [], True]
+dam = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/dam.png')), [], False]
+elk = [2, 4, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/elk.png')), ['sprintePath('], True]
+elk_fawn = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/elk_fawn.png')), ['sprintePath(', 'fledgling'], True]
+field_mice = [2, 2, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/field_mice.png')), ['fecundity'], True]
+frozen_opossum = [0, 5, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/frozen_opossum.png')), ['frozen_away'], False]
+furry_tail = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/furry_tail.png')), [], False]
+geck = [1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/geck.png')), [], True]
+gold_nugget = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/gold_nugget.png')), [], False]
+golden_pelt = [0, 3, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/golden_pelt.png')), [], False]
+grand_fir = [0, 3, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/grand_fir.png')), ['mighty_leap'], False]
+great_white = [4, 2, 3, 0, pygame.image.load(Path('CroppedInscryptionCards/great_white.png')), ['waterborne'], True]
+greater_smoke = [1, 3, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/greater_smoke.png')), ['bone_king'], True]
+grizzly = [4, 6, 3, 0, pygame.image.load(Path('CroppedInscryptionCards/grizzly.png')), [], True]
+kingfisher = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/kingfisher.png')), ['waterborne', 'airborne'], True]
+leaping_trap = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/leaping_trap.png')), ['mighty_leap', 'steel_trap'], True]
+long_elk = [1, 2, 0, 4, pygame.image.load(Path('CroppedInscryptionCards/long_elk.png')), ['sprintePath(', 'touch_of_death'], True]
+magpie = [1, 1, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/magpie.png')), ['hoardePath(', 'airborne'], True]
+mantis = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/mantis.png')), ['bifurcated_strike'], True]
+mantis_god = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/mantis_god.png')), ['trifurcated_strike'], True]
+mole = [0, 4, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/mole.png')), ['burrowePath('], True]
+mole_man = [0, 6, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/mole_man.png')), ['burrowePath(', 'mighty_leap'], True]
+moose_buck = [3, 7, 3, 0, pygame.image.load(Path('CroppedInscryptionCards/moose_buck.png')), ['hefty'], True]
+mothman = [7, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/mothman.png')), ['airborne'], True]
+opossum = [1, 1, 0, 2, pygame.image.load(Path('CroppedInscryptionCards/opossum.png')), [], True]
+ouroboros = [1, 1, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/ouroboros.png')), ['unkillable'], True]
+pack_mule = [0, 5, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/pack_mule.png')), ['sprintePath('], True]
+pack_rat = [2, 2, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/pack_rat.png')), ['trinket_bearePath('], True]
+porcupine = [1, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/porcupine.png')), ['sharp_quills'], True]
+pronghorn = [1, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/pronghorn.png')), ['sprintePath(', 'bifurcated_strike'], True]
+rabbit = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/rabbit.png')), [], True]
+rabbit_pelt = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/rabbit_pelt.png')), [], False]
+rat_king = [2, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/rat_king.png')), ['bone_king'], True]
+rattler = [3, 1, 0, 6, pygame.image.load(Path('CroppedInscryptionCards/rattler.png')), [], True]
+raven = [2, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/raven.png')), ['airborne'], True]
+raven_egg = [0, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/raven_egg.png')), ['fledgling'], True]
+ring_worm = [0, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/ring_worm.png')), [], True]
+river_otter = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/river_otter.png')), ['waterborne'], True]
+river_snapper = [1, 6, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/river_snapper.png')), [], True]
+skink = [1, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/skink.png')), ['loose_tail'], True]
+skunk = [0, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/skunk.png')), ['stinky'], True]
+snowy_fir = [0, 4, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/snowy_fir.png')), ['mighty_leap'], False]
+sparrow = [1, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/sparrow.png')), ['airborne'], True]
+squid_bell = [0, 3, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/squid_bell.png')), [], True] # Damage based on position from left, leftmost = 4, rightmost = 1
+squid_cards = [0, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/squid_cards.png')), [], True] # Damage = number of cards in playePath('s hand
+squid_mirror = [0, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/squid_mirror.png')), [], True] # Damage = Opposite card's damage
+squirrel = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/squirrel.png')), [], True]
+starvation = [1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/starvation.png')), ['repulsive'], False]
+starvation_flying = [1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/starvation_flying.png')), ['airborne'], False]
+stinkbug = [1, 2, 0, 2, pygame.image.load(Path('CroppedInscryptionCards/stinkbug_talking.png')), ['stinky'], True]
+stoat = [1, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/stoat_talking.png')), [], True]
+strange_frog = [1, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/strange_frog.png')), ['mighty_leap'], False]
+strange_larva = [0, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/strange_larva.png')), ['fledgling'], True]
+strange_pupa = [0, 3, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/strange_pupa.png')), ['fledgling'], True]
+stump = [0, 3, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/stump.png')), [], False]
+tail_feathers = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/tail_feathers.png')), [], False]
+the_daus = [2, 2, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/the_daus.png')), ['bellist'], True]
+the_smoke = [0, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/the_smoke.png')), ['bone_king'], True]
+turkey_vulture = [3, 3, 0, 8, pygame.image.load(Path('CroppedInscryptionCards/turkey_vulture.png')), ['airborne'], True]
+undead_cat = [3, 6, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/undead_cat.png')), [], True]
+urayuli = [7, 7, 4, 0, pygame.image.load(Path('CroppedInscryptionCards/urayuli.png')), [], True]
+warren = [0, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/warren.png')), ['rabbit_hole'], True]
+wolf = [3, 2, 2, 0, pygame.image.load(Path('CroppedInscryptionCards/wolf.png')), [], True]
+wolf_cub = [1, 1, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/wolf_cub.png')), ['fledgling'], True]
+wolf_pelt = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/wolf_pelt.png')), [], False]
+stunted_wolf = [2, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/wolf_talking.png')), [], True]
+worker_ant = [0, 2, 1, 0, pygame.image.load(Path('CroppedInscryptionCards/worker_ant.png')), ['ant_damage'], True] # Added 'sigil' for ant damage
+wriggling_leg = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/wriggling_leg.png')), [], False]
+wriggling_tail = [0, 2, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/wriggling_tail.png')), [], False]
 
 
 
 
 # Button instances
-viewhand_button = Button(75, 950, pygame.image.load(r'OtherSprites\showhand_button.png'), pygame.image.load(r'OtherSprites\showhand_button_hover.png'), 0.3)
-viewboard_button = Button(860, 950, pygame.image.load(r'OtherSprites\showboard_button.png'), pygame.image.load(r'OtherSprites\showboard_button_hover.png'), 0.3)
-play_button = Button(40, 850, pygame.image.load(r'OtherSprites\play_button.png'), pygame.image.load(r'OtherSprites\play_button_hover.png'), 0.4)
-exit_button = Button(1820, 20, pygame.image.load(r'OtherSprites\exit_button.png'), pygame.image.load(r'OtherSprites\exit_button_hover.png'), 0.4)
-backbutton = Button(25, 25, pygame.image.load(r'OtherSprites/back_arrow.png'), pygame.image.load(r'OtherSprites/back_arrow_hover.png'), 1)
+viewhand_button = Button(75, 950, pygame.image.load(Path('OtherSprites/showhand_button.png')), pygame.image.load(Path('OtherSprites/showhand_button_hover.png')), 0.3)
+viewboard_button = Button(860, 950, pygame.image.load(Path('OtherSprites/showboard_button.png')), pygame.image.load(Path('OtherSprites/showboard_button_hover.png')), 0.3)
+play_button = Button(40, 850, pygame.image.load(Path('OtherSprites/play_button.png')), pygame.image.load(Path('OtherSprites/play_button_hover.png')), 0.4)
+exit_button = Button(1820, 20, pygame.image.load(Path('OtherSprites/exit_button.png')), pygame.image.load(Path('OtherSprites/exit_button_hover.png')), 0.4)
+backbutton = Button(25, 25, pygame.image.load(Path('OtherSprites/back_arrow.png')), pygame.image.load(Path('OtherSprites/back_arrow_hover.png')), 1)
 # Draw pile buttons
-normaldeck_button = Button(1580, 800, pygame.image.load(r'CroppedInscryptionCards\backs\common.png'), pygame.image.load(r'CroppedInscryptionCards\backs\common.png'), 0.5)
-squirreldeck_button = Button(1750, 800, pygame.image.load(r'CroppedInscryptionCards\backs\squirrel.png'), pygame.image.load(r'CroppedInscryptionCards\backs\squirrel.png'), 0.5)
+normaldeck_button = Button(1580, 800, pygame.image.load(Path('CroppedInscryptionCards/backs/common.png')), pygame.image.load(Path('CroppedInscryptionCards/backs/common.png')), 0.5)
+squirreldeck_button = Button(1750, 800, pygame.image.load(Path('CroppedInscryptionCards/backs/squirrel.png')), pygame.image.load(Path('CroppedInscryptionCards/backs/squirrel.png')), 0.5)
 # Title screen buttons
-title_play_button = Button(500, 650, pygame.image.load(r'OtherSprites\title_play_button.png'), pygame.image.load(r'OtherSprites\title_play_button_hover.png'), 0.7)
-title_options_button = Button(843, 650, pygame.image.load(r'OtherSprites\title_options_button.png'), pygame.image.load(r'OtherSprites\title_options_button_hover.png'), 0.7)
-title_quit_button = Button(1186, 650, pygame.image.load(r'OtherSprites\title_quit_button.png'), pygame.image.load(r'OtherSprites\title_quit_button_hover.png'), 0.7)
+title_play_button = Button(500, 650, pygame.image.load(Path('OtherSprites/title_play_button.png')), pygame.image.load(Path('OtherSprites/title_play_button_hover.png')), 0.7)
+title_options_button = Button(843, 650, pygame.image.load(Path('OtherSprites/title_options_button.png')), pygame.image.load(Path('OtherSprites/title_options_button_hover.png')), 0.7)
+title_quit_button = Button(1186, 650, pygame.image.load(Path('OtherSprites/title_quit_button.png')), pygame.image.load(Path('OtherSprites/title_quit_button_hover.png')), 0.7)
 # Options menu buttons
 
 
@@ -575,7 +576,7 @@ while run:
         for i in range(len(p1hand)):
             x = ((1920 // (len(p1hand) + 1)) * (i + 1)) - 150  # Equally spaced out on the screen
             y = 315 # Same y value
-            cardbuttonimg = pygame.image.load(r'OtherSprites/blankinscryptioncard.png')
+            cardbuttonimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
             cardbutton = Button(x, y, cardbuttonimg, cardbuttonimg, 1)
             cardbuttonvar = cardbutton.draw()
             displaycard(p1hand[i], x, y)  # Draws over the invisible button with the card
@@ -604,7 +605,7 @@ while run:
         for i in range(len(p2hand)):
             x = ((1920 // (len(p2hand) + 1)) * (i + 1)) - 150  # Equally spaced out on the screen
             y = 315  # Same y value
-            cardbuttonimg = pygame.image.load(r'OtherSprites/blankinscryptioncard.png')
+            cardbuttonimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
             cardbutton = Button(x, y, cardbuttonimg, cardbuttonimg, 1)
             cardbuttonvar = cardbutton.draw()
             displaycard(p2hand[i], x, y)  # Draws over the invisible button with the card
@@ -626,7 +627,7 @@ while run:
         cardplayed = False
 
         # Draws invisible buttons over the 4 card spaces on the bottom
-        inviscardimg = pygame.image.load(r'OtherSprites/blankinscryptioncard.png')
+        inviscardimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
         cardspace1button = Button(370, 585, inviscardimg, inviscardimg, 1)
         cardspace2button = Button(670, 585, inviscardimg, inviscardimg, 1)
         cardspace3button = Button(970, 585, inviscardimg, inviscardimg, 1)
@@ -840,7 +841,7 @@ while run:
 
 
     elif state == 4: # Title Screen
-        screen.blit(pygame.image.load(r'OtherSprites\title_background.jpg'), (0, 0))
+        screen.blit(pygame.image.load(Path('OtherSprites/title_background.jpg')), (0, 0))
 
         if title_play_button.draw():
             state = 0
