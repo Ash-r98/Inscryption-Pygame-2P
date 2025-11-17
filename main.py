@@ -89,6 +89,29 @@ class Card:
             enemycard.dmg = 0
         self.hp -= enemycard.dmg
 
+
+# Object mouse hover detection
+def ishover(rect): # Takes a pygame rectangle object as a parameter
+    # Get mouse position
+    pos = pygame.mouse.get_pos()
+
+    # Check if position of mouse is over the object
+    if rect.collidepoint(pos):
+        return True
+    else:
+        return False
+
+# Object mouse click detection
+def isclicked(rect): # Takes a pygame rectangle object as a parameter
+    click = False
+
+    if ishover(rect): # If mouse is on the object
+        if pygame.mouse.get_pressed()[0]: # If the left mouse button is pressed
+            click = True
+    return click # Always returns true or false
+
+
+
 def draw(deck):
     if len(deck) <= 0: # If deck is empty draw a starvation card (hopefully prevents softlocking)
         return Card([1, 1, 0, 0, pygame.image.load(Path('CroppedInscryptionCards/starvation.png')), ['repulsive'], False])
@@ -186,26 +209,44 @@ class Button:
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
         self.clicked = False
+        self.buffer = True
 
     def draw(self):
         action = False
 
-        # Get mouse position
-        pos = pygame.mouse.get_pos()
-
         # Check mouseover and click conditions
-        if self.rect.collidepoint(pos):
+        if ishover(self.rect):
             # Draw hover button to screen
             screen.blit(self.hoverimage, (self.rect.x, self.rect.y))
-            if pygame.mouse.get_pressed()[0] and self.clicked == False: # 0 = left click
-                self.clicked = True # Can only click once at a time
+            if isclicked(self.rect) and self.clicked == False and self.buffer == False:  # 0 = left click
+                self.clicked = True  # Can only click once at a time
                 action = True
         else:
             # Draw normal button to screen
             screen.blit(self.image, (self.rect.x, self.rect.y))
 
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False # Resets if mouse is not held
+        if not pygame.mouse.get_pressed()[0]:
+            self.clicked = False  # Resets if mouse is not held
+            self.buffer = False
+
+        return action
+
+    def drawnobuffer(self):
+        action = False
+
+        # Check mouseover and click conditions
+        if ishover(self.rect):
+            # Draw hover button to screen
+            screen.blit(self.hoverimage, (self.rect.x, self.rect.y))
+            if isclicked(self.rect) and self.clicked == False:  # 0 = left click
+                self.clicked = True  # Can only click once at a time
+                action = True
+        else:
+            # Draw normal button to screen
+            screen.blit(self.image, (self.rect.x, self.rect.y))
+
+        if not pygame.mouse.get_pressed()[0]:
+            self.clicked = False  # Resets if mouse is not held
 
         return action
 
@@ -324,6 +365,13 @@ title_play_button = Button(500, 650, pygame.image.load(Path('OtherSprites/title_
 title_options_button = Button(843, 650, pygame.image.load(Path('OtherSprites/title_options_button.png')), pygame.image.load(Path('OtherSprites/title_options_button_hover.png')), 0.7)
 title_quit_button = Button(1186, 650, pygame.image.load(Path('OtherSprites/title_quit_button.png')), pygame.image.load(Path('OtherSprites/title_quit_button_hover.png')), 0.7)
 # Options menu buttons
+
+# Draws invisible buttons over the 4 card spaces on the bottom for play stage
+inviscardimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
+cardspace1button = Button(370, 585, inviscardimg, inviscardimg, 1)
+cardspace2button = Button(670, 585, inviscardimg, inviscardimg, 1)
+cardspace3button = Button(970, 585, inviscardimg, inviscardimg, 1)
+cardspace4button = Button(1270, 585, inviscardimg, inviscardimg, 1)
 
 
 
@@ -578,7 +626,7 @@ while run:
             y = 315 # Same y value
             cardbuttonimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
             cardbutton = Button(x, y, cardbuttonimg, cardbuttonimg, 1)
-            cardbuttonvar = cardbutton.draw()
+            cardbuttonvar = cardbutton.drawnobuffer()
             displaycard(p1hand[i], x, y)  # Draws over the invisible button with the card
             if cardbuttonvar:
                 selectedcard = i
@@ -607,7 +655,7 @@ while run:
             y = 315  # Same y value
             cardbuttonimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
             cardbutton = Button(x, y, cardbuttonimg, cardbuttonimg, 1)
-            cardbuttonvar = cardbutton.draw()
+            cardbuttonvar = cardbutton.drawnobuffer()
             displaycard(p2hand[i], x, y)  # Draws over the invisible button with the card
             if cardbuttonvar:
                 selectedcard = i
@@ -626,12 +674,12 @@ while run:
         # Creates temporary variable for on play sigils
         cardplayed = False
 
-        # Draws invisible buttons over the 4 card spaces on the bottom
-        inviscardimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
-        cardspace1button = Button(370, 585, inviscardimg, inviscardimg, 1)
-        cardspace2button = Button(670, 585, inviscardimg, inviscardimg, 1)
-        cardspace3button = Button(970, 585, inviscardimg, inviscardimg, 1)
-        cardspace4button = Button(1270, 585, inviscardimg, inviscardimg, 1)
+        # Grabbing card space buttons (previous code)
+        #inviscardimg = pygame.image.load(Path('OtherSprites/blankinscryptioncard.png'))
+        #cardspace1button = Button(370, 585, inviscardimg, inviscardimg, 1)
+        #cardspace2button = Button(670, 585, inviscardimg, inviscardimg, 1)
+        #cardspace3button = Button(970, 585, inviscardimg, inviscardimg, 1)
+        #cardspace4button = Button(1270, 585, inviscardimg, inviscardimg, 1)
 
         if p1turn: # Player 1 playing functionality
             # Back button
