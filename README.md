@@ -11,6 +11,6 @@
 
 Still a work in progress, many sigils have not been implemented yet and there is currently no deck customisation system, these will hopefully be added in the future if i bother
 
-# Bugs
+# Desperation
 
-Please dont judge my code i swear I can do better now
+Please dont judge my code i swear I can do better now.
