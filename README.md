@@ -4,8 +4,8 @@
 
 # Requirements
 
-Pygame >= 1.9.1
-python >= 3.14
+`pygame` >= 1.9.1
+`python` >= 3.14
 
 # Current state
 
