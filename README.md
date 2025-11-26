@@ -1,6 +1,6 @@
 # About
 
-2 player recreation of the gameplay of Inscryption act 1.
+2 player recreation of the gameplay of Inscryption act 1
 
 # Requirements
 
